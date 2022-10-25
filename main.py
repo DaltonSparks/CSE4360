@@ -55,10 +55,7 @@ def backward():
     RM.run_time(-MS,MT,Stop.HOLD,True)
 
 #testing movement
-left()
-left()
-right()
-right()
+
 forward()
 backward()
 
