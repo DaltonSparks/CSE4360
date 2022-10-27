@@ -28,36 +28,68 @@ ev3 = EV3Brick()
 #connected motors to ports
 LM = Motor(Port.A)
 RM = Motor(Port.B)
-
+G = GyroSensor(Port.s1)
 #speed variables
 # 16x10 12 inch tiles
-#move speed and time
-MS = ((305/(69*math.pi))*360)/2
-MT = 1500
+#move speed and time 
+MS = ((305/(85*math.pi))*360)/2
+MT = 1480*2
 #turn speed and time
-TS = MS/2
-TT = 900
+TS = 150 #((305/(85*math.pi))*360)/2
+print(TS)
+TT = 1165 #890
 
 def left():
+    time.sleep(2)
     LM.run_time(-TS,TT,Stop.HOLD,False)
     RM.run_time(TS,TT,Stop.HOLD,True)
 
 def right():
+    time.sleep(2)
     LM.run_time(TS,TT,Stop.HOLD,False)
     RM.run_time(-TS,TT,Stop.HOLD,True)
 
 def forward():
+    time.sleep(2)
     LM.run_time(MS,MT,Stop.HOLD,False)
     RM.run_time(MS,MT,Stop.HOLD,True)
 
+def hforward():
+    time.sleep(2)
+    LM.run_time(MS,MT/2,Stop.HOLD,False)
+    RM.run_time(MS,MT/2,Stop.HOLD,True)
+
 def backward():
+    time.sleep(2)
     LM.run_time(-MS,MT,Stop.HOLD,False)
     RM.run_time(-MS,MT,Stop.HOLD,True)
+c = 0
+while(c<5):
 
 #testing movement
+    time.sleep(1)
+    left()
+#left()
+#time.sleep(1)
+#right()
+#right()
+    time.sleep(1)
+    forward()
+#backward()
+    time.sleep(1)
+    left()
+    time.sleep(1)
+    forward()
+    time.sleep(1)
+    left()
+    time.sleep(1)
+    forward()
+    time.sleep(1)
+    left()
+    time.sleep(1)
+    forward()
+    c+=1
 
-forward()
-backward()
 
 #construct workspace with all paths and obstacles 
 
@@ -65,4 +97,4 @@ backward()
 
 
 # Write your program here.
-ev3.speaker.beep()
+#ev3.speaker.beep()
